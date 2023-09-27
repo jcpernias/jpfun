@@ -1,0 +1,10 @@
+Package: jpfun
+Title: Utility functions
+Version: 0.0.0.9000
+Authors@R:
+    person("José", "Pernías", , "jcpernias@gmail.com", role = c("aut", "cre"))
+Description: This package is a collection of utility functions.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
