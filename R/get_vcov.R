@@ -5,7 +5,7 @@
 ## The returned covariance matrix include rows and columns of NA's for
 ## aliased coefficients.
 get_vcov <- function(x) {
-    Vbeta <- vcov(x)
+    Vbeta <- stats::vcov(x)
 
     ## Handle aliased coefficients
     aliased <- is.na(stats::coef(x))
