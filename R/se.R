@@ -1,7 +1,7 @@
 ##' Extract Standard Errors
 ##'
-##' `se()` returns the standard errors of coefficients from objects
-##' returning by modeling functions.
+##' `se()` returns the standard errors of parameter estimates from
+##' objects returned by modeling functions.
 ##'
 ##' @title se
 ##' @param x an object from which standard errors are extracted
@@ -12,5 +12,6 @@
 ##'
 ##' @export
 se <- function(x) {
-    return(sqrt(diag(stats::vcov(x))))
+    V <- get_vcov(x)
+    return(sqrt(diag(V)))
 }

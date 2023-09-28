@@ -1,5 +1,11 @@
-test_that("lm standard errors", {
+test_that("OLS standard errors", {
     x <- lm(mpg ~ disp, data = mtcars)
-    Vbeta <- vcov(x)
-    expect_equal(sqrt(diag(Vbeta)), se(x))
+    V <- vcov(x)
+    expect_equal(se(x), sqrt(diag(V)))
+})
+
+test_that("aliased OLS standard errors", {
+    x <- lm(mpg ~ disp + I(disp + 1), data = mtcars)
+    V <- vcov(x, complete = TRUE)
+    expect_equal(se(x), sqrt(diag(V)))
 })
