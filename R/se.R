@@ -11,7 +11,7 @@
 ##' se(x)
 ##'
 ##' @export
-se <- function(x) {
-    V <- get_vcov(x)
+se <- function(x, vcov = NULL) {
+    V <- get_vcov(x, how = vcov)
     return(sqrt(diag(V)))
 }
