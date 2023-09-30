@@ -28,3 +28,18 @@ test_that("HC standard errors", {
     V <- sandwich::vcovHC(x, type = "HC3")
     expect_equal(se(x, vcov = "HC"), sqrt(diag(V)))
 })
+
+test_that("incorrect type of vcov parameter", {
+    x <- lm(mpg ~ disp, data = mtcars)
+    expect_error(se(x, vcov = NULL))
+    expect_error(se(x, vcov = NA))
+    expect_error(se(x, vcov = c("iid", "HC")))
+    expect_error(se(x, vcov = sandwich::vcovHC))
+})
+
+test_that("HAC standard errors", {
+    x <- lm(DriversKilled ~ law, data = Seatbelts)
+    V <- sandwich::NeweyWest(x, prewhite = FALSE)
+    expect_equal(se(x, vcov = "NW"), sqrt(diag(V)))
+    expect_equal(se(x, vcov = "HAC"), sqrt(diag(V)))
+})
